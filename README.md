@@ -1,0 +1,1 @@
+部署时需要把netty-1.0-SNAPSHOT.jar和lib目录都上传
