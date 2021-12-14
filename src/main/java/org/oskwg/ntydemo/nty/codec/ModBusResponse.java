@@ -1,4 +1,4 @@
-package com.dianli2.nty.codec;
+package org.oskwg.ntydemo.nty.codec;
 
 import lombok.Data;
 

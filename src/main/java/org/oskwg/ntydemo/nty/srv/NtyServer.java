@@ -1,7 +1,7 @@
-package com.dianli2.nty.srv;
+package org.oskwg.ntydemo.nty.srv;
 
-import com.dianli2.nty.codec.ModBusRequestDecoder;
-import com.dianli2.nty.codec.ModBusResponseEncoder;
+import org.oskwg.ntydemo.nty.codec.ModBusRequestDecoder;
+import org.oskwg.ntydemo.nty.codec.ModBusResponseEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

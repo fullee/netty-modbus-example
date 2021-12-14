@@ -1,8 +1,8 @@
-package com.dianli2.nty.srv;
+package org.oskwg.ntydemo.nty.srv;
 
 import cn.hutool.core.util.RandomUtil;
-import com.dianli2.nty.codec.ModBusRequest;
-import com.dianli2.nty.codec.ModBusResponse;
+import org.oskwg.ntydemo.nty.codec.ModBusRequest;
+import org.oskwg.ntydemo.nty.codec.ModBusResponse;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

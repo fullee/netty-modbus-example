@@ -1,9 +1,9 @@
-package com.dianli2.nty.codec;
+package org.oskwg.ntydemo.bit.codec.entity;
 
 import lombok.Data;
 
 @Data
-public class ModBusRequest {
+public class BitModBusRequest {
 
     /**
      * 报文标识
@@ -30,17 +30,18 @@ public class ModBusRequest {
      */
     short startAddress;
     /**
-     * 寄存器个数（1个寄存器占两个字节）
+     * bit数
      */
     int count;
 
-    public ModBusRequest() {
+    public BitModBusRequest() {
 
     }
 
-    public ModBusRequest(short sequenceId,short startAddress,int count) {
-        if (count > 126 || count % 2 != 0) {
-            throw new RuntimeException("addressCount can not >126, 126 * 2 = 252 byte");
+    public BitModBusRequest(short sequenceId, short startAddress, int count) {
+        // 报文长度标识是一字节，最大能表示256个字节 256*8个bit位
+        if (count > 2048) {
+            throw new RuntimeException("bitCount can not >2048, 256byte * 8 = 2048 bit");
         }
         this.sequenceId = sequenceId;
         this.startAddress = startAddress;

@@ -1,15 +1,10 @@
-package com.dianli2.nty.cli;
+package org.oskwg.ntydemo.nty.cli;
 
 import com.alibaba.fastjson.JSON;
-import com.dianli2.nty.codec.ModBusRequest;
-import com.dianli2.nty.codec.ModBusResponse;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
+import org.oskwg.ntydemo.nty.codec.ModBusRequest;
+import org.oskwg.ntydemo.nty.codec.ModBusResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.util.CharsetUtil;
 
 import java.util.ArrayList;
 import java.util.List;

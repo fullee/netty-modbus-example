@@ -1,7 +1,7 @@
-package com.dianli2.nty.cli;
+package org.oskwg.ntydemo.nty.cli;
 
-import com.dianli2.nty.codec.ModBusRequestEncoder;
-import com.dianli2.nty.codec.ModBusResponseDecoder;
+import org.oskwg.ntydemo.nty.codec.ModBusRequestEncoder;
+import org.oskwg.ntydemo.nty.codec.ModBusResponseDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -22,7 +22,7 @@ import java.net.InetSocketAddress;
 public class NtyClient {
 
     public static final String HOST = "localhost";
-    public static final int PORT = 9001;
+    public static final int PORT = 9002;
 
     public static void main(String[] args) throws InterruptedException {
         NioEventLoopGroup group = new NioEventLoopGroup();
