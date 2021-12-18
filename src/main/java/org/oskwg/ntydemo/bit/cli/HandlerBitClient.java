@@ -14,7 +14,7 @@ public class HandlerBitClient extends SimpleChannelInboundHandler<BitModBusRespo
         for (Byte value : response.getValues()) {
 //            System.out.print(Byte.toUnsignedInt(value) + " ");
 //            System.out.println(S.padLeadingZero(Integer.parseInt(), 8));
-            sb.append(S.reversed(S.padLeadingZero(Integer.parseInt(Integer.toBinaryString(value)), 8)));
+            sb.append(S.reversed(S.padLeadingZero(Integer.parseInt(Integer.toBinaryString(Byte.toUnsignedInt(value))), 8)));
         }
         System.out.println(sb);
     }
@@ -22,7 +22,7 @@ public class HandlerBitClient extends SimpleChannelInboundHandler<BitModBusRespo
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // 最大可发送FF个字节，也就是256*8=2048个字节
-        ctx.write(new BitModBusRequest((short) 1, (short) 0, 2020));
+        ctx.write(new BitModBusRequest((short) 1, (short) 0, 1401));
 //        ctx.write(new ModBusRequest((short) 2, (short) 126, 126));
 //        ctx.write(new ModBusRequest((short) 3, (short) (126 * 2), 126));
 //        ctx.write(new ModBusRequest((short) 4, (short) (126 * 3), 126));
