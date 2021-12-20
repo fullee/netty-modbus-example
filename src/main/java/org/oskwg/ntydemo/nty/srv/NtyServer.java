@@ -18,7 +18,7 @@ import java.net.InetSocketAddress;
 
 public class NtyServer {
 
-    public static final int PORT = 9002;
+    public static final int PORT = 9001;
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -36,12 +36,12 @@ public class NtyServer {
                         @Override
                         protected void initChannel(SocketChannel channel) throws Exception {
                             ChannelPipeline pipeline = channel.pipeline();
+                            // 设置超时时间，防止连接过多。
+                            pipeline.addLast("readTimeout", new ReadTimeoutHandler(5));
                             pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                             pipeline.addLast(new LengthFieldBasedFrameDecoder(1024, 4, 2, 0, 0));
                             pipeline.addLast(new ModBusRequestDecoder());
                             pipeline.addLast(new ModBusResponseEncoder());
-                            // 设置超时时间，防止连接过多。
-                            pipeline.addLast("readTimeout", new ReadTimeoutHandler(5));
                             pipeline.addLast(businessGroup, "executor", new HandlerServer());
                         }
                     });

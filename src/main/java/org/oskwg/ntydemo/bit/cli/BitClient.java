@@ -1,5 +1,6 @@
 package org.oskwg.ntydemo.bit.cli;
 
+import io.netty.handler.timeout.ReadTimeoutHandler;
 import org.oskwg.ntydemo.bit.codec.BitModBusRequestEncoder;
 import org.oskwg.ntydemo.bit.codec.BitModBusResponseDecoder;
 import io.netty.bootstrap.Bootstrap;
@@ -20,7 +21,7 @@ import java.net.InetSocketAddress;
 public class BitClient {
 
     public static final String HOST = "localhost";
-    public static final int PORT = 2002;
+    public static final int PORT = 9002;
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < 300; i++) {
@@ -36,6 +37,8 @@ public class BitClient {
                             @Override
                             protected void initChannel(SocketChannel socketChannel) throws Exception {
                                 ChannelPipeline pipeline = socketChannel.pipeline();
+                                // 设置超时时间，防止连接过多。
+                                pipeline.addLast("readTimeout", new ReadTimeoutHandler(5));
 //                                pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                                 pipeline.addLast(new LengthFieldBasedFrameDecoder(1024, 4, 2, 0, 0));
                                 pipeline.addLast(new BitModBusRequestEncoder());

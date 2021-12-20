@@ -1,5 +1,6 @@
 package org.oskwg.ntydemo.nty.cli;
 
+import io.netty.handler.timeout.ReadTimeoutHandler;
 import org.oskwg.ntydemo.nty.codec.ModBusRequestEncoder;
 import org.oskwg.ntydemo.nty.codec.ModBusResponseDecoder;
 import io.netty.bootstrap.Bootstrap;
@@ -22,7 +23,7 @@ import java.net.InetSocketAddress;
 public class NtyClient {
 
     public static final String HOST = "localhost";
-    public static final int PORT = 9002;
+    public static final int PORT = 9001;
 
     public static void main(String[] args) throws InterruptedException {
         NioEventLoopGroup group = new NioEventLoopGroup();
@@ -37,6 +38,8 @@ public class NtyClient {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline pipeline = socketChannel.pipeline();
+                            // 设置超时时间，防止连接过多。
+                            pipeline.addLast("readTimeout", new ReadTimeoutHandler(5));
                             pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                             pipeline.addLast(new LengthFieldBasedFrameDecoder(1024, 4, 2, 0, 0));
                             pipeline.addLast(new ModBusRequestEncoder());
